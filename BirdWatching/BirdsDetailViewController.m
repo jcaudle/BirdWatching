@@ -7,6 +7,7 @@
 //
 
 #import "BirdsDetailViewController.h"
+#import "BirdSighting.h"
 
 @interface BirdsDetailViewController ()
 - (void)configureView;
@@ -14,17 +15,15 @@
 
 @implementation BirdsDetailViewController
 
-@synthesize detailItem = _detailItem;
-@synthesize detailDescriptionLabel = _detailDescriptionLabel;
+@synthesize sighting = _sighting, birdNameLabel = _birdNameLabel, locationLabel = _locationLabel, dateLabel = _dateLabel;
 
 #pragma mark - Managing the detail item
 
-- (void)setDetailItem:(id)newDetailItem
-{
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
+- (void)setSighting:(BirdSighting *)newSighting {
+    if (_sighting != newSighting) {
+        _sighting = newSighting;
         
-        // Update the view.
+        // update the view
         [self configureView];
     }
 }
@@ -32,9 +31,18 @@
 - (void)configureView
 {
     // Update the user interface for the detail item.
+    BirdSighting *theSighting = self.sighting;
+    
+    static NSDateFormatter *formatter = nil;
+    if (formatter == nil) {
+        formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateStyle:NSDateFormatterMediumStyle];
+    }
 
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem description];
+    if (theSighting) {
+        self.birdNameLabel.text = theSighting.name;
+        self.locationLabel.text = theSighting.location;
+        self.dateLabel.text = [formatter stringFromDate:(NSDate *)theSighting.date];
     }
 }
 
@@ -47,9 +55,8 @@
 
 - (void)viewDidUnload
 {
+    self.sighting = nil;
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    self.detailDescriptionLabel = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
