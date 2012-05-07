@@ -67,7 +67,13 @@
                             <outlet property="delegate" destination="12" id="15"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Bird Sightings" id="36"/>
+                    <navigationItem key="navigationItem" title="Bird Sightings" id="36">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Neo-qu-VKJ">
+                            <connections>
+                                <segue destination="R0P-RS-rrR" kind="modal" identifier="ShowAddSightingView" id="3MO-WY-ENx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="459" y="64"/>

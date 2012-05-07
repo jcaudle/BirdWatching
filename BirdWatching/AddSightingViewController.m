@@ -145,6 +145,6 @@
 }
 
 - (IBAction)done:(id)sender {
-    [[self delegate] addSightingViewControllerDidCancel:self name:self.birdNameInput.text location:self.locationInput.text];
+    [[self delegate] addSightingViewControllerDidFinish:self name:self.birdNameInput.text location:self.locationInput.text];
 }
 @end
