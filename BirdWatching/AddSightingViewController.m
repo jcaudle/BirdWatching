@@ -24,6 +24,15 @@
     return self;
 }
 */
+@synthesize birdNameInput = _birdNameInput;
+@synthesize locationInput = _locationInput;
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if ((textField == self.birdNameInput) || (textField == self.locationInput)) {
+        [textField resignFirstResponder];
+    }
+    return YES;
+}
 
 - (void)viewDidLoad
 {
@@ -38,6 +47,8 @@
 
 - (void)viewDidUnload
 {
+    [self setBirdNameInput:nil];
+    [self setLocationInput:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -128,4 +139,9 @@
      */
 }
 
+- (IBAction)cancel:(id)sender {
+}
+
+- (IBAction)done:(id)sender {
+}
 @end
