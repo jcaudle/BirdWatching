@@ -26,6 +26,7 @@
 */
 @synthesize birdNameInput = _birdNameInput;
 @synthesize locationInput = _locationInput;
+@synthesize delegate = _delegate;
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if ((textField == self.birdNameInput) || (textField == self.locationInput)) {
@@ -140,8 +141,10 @@
 }
 
 - (IBAction)cancel:(id)sender {
+    [[self delegate] addSightingViewControllerDidCancel:self];
 }
 
 - (IBAction)done:(id)sender {
+    [[self delegate] addSightingViewControllerDidCancel:self name:self.birdNameInput.text location:self.locationInput.text];
 }
 @end
